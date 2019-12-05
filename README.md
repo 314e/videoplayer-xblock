@@ -16,10 +16,10 @@ This XBlock provides the DASH Player (https://github.com/Dash-Industry-Forum/das
 
 ### Install / Update the XBlock ###
 #### These steps are for bitnami open edx installation
-/opt/edx-ironwood.2-1/use_edx
-source /opt/edx-ironwood.2-1/apps/edx/venvs/edxapp/bin/activate
-pip install git+https://github.com/314e/videoplayer-xblock.git
-/opt/edx-ironwood.2-1/ctlscript.sh restart apache
+* /opt/edx-ironwood.2-1/use_edx
+* source /opt/edx-ironwood.2-1/apps/edx/venvs/edxapp/bin/activate
+* pip install git+https://github.com/314e/videoplayer-xblock.git
+* /opt/edx-ironwood.2-1/ctlscript.sh restart apache
 
 
 #### Follow the same steps for other xblock installations
