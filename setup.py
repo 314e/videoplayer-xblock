@@ -17,7 +17,7 @@ def package_data(pkg, root):
 setup(
     name='videoplayer-xblock',
     version='0.1',
-    description='XBlock to use the DASH player in edX, instead of the default one.',
+    description='XBlock to use DASH player in edX, instead of the default one.',
     packages=[
         'videoplayer',
     ],
@@ -26,7 +26,7 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'videoplayer = videoplayer:videoplayer-xblock',
+            'videoplayer = videoplayer:videoPlayerXBlock',
         ]
     },
     package_data=package_data("videoplayer", "static"),
