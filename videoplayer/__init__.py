@@ -1,1 +1,1 @@
-from .videoplayer import videoplayer-xblock
+from .videoplayer import videoPlayerXBlock
