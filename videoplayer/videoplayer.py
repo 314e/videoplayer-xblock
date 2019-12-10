@@ -137,7 +137,7 @@ class videoPlayerXBlock(XBlock):
         return frag
 
     @XBlock.json_handler
-    def save_videojs(self, data, suffix=''):
+    def save_video(self, data, suffix=''):
         """
         The saving handler.
         """
