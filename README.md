@@ -21,11 +21,6 @@ This XBlock provides the DASH Player (https://github.com/Dash-Industry-Forum/das
 * pip install git+https://github.com/314e/videoplayer-xblock.git
 * /opt/edx-ironwood.2-1/ctlscript.sh restart apache
 
-
-#### Follow the same steps for other xblock installations
-pip install git+https://github.com/MarCnu/pdfXBlock
-scormxblock
-
 ### Activate the XBlock in your course ###
 Go to `Settings -> Advanced Settings` and set `advanced_modules` to `["videoplayer"]`.
 
