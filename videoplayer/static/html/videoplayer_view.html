@@ -6,7 +6,14 @@
     </style>
     <h2>{{ display_name }}</h2>
 
-    <video id="video" width="640" poster="//shaka-player-demo.appspot.com/assets/poster.jpg" controls autoplay></video>
+    <video
+        id="video"
+        width="640"
+        poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+        controls
+        autoplay
+        data-videolink="{{url}}"
+    ></video>
 
     {% if allow_download or source_url != "" %}
     <ul>

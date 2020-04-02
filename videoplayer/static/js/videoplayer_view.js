@@ -11,24 +11,12 @@ function videoPlayerXBlockInitView(runtime, element) {
     console.log("runtime is ", runtime)
     // videojs(video.get(0), {playbackRates:[0.75,1,1.25,1.5,1.75,2]}, function() {});
     // debugger;
-    // var url = document.querySelector("#videoPlayer").getAttribute("data-videourl");
-    // if (!url) {
-    //     console.log("Could not found the videoUrl to play, element.querySelector('#videoPlayer').videoUrl")
-    // }
-    // console.log("videoUrl is ", url);
-    // var player = dashjs.MediaPlayer().create();
-    // player.initialize(document.querySelector("#videoPlayer"), url, true);
+    var url = document.querySelector("#video").getAttribute("data-videolink");
+    if (!url) {
+        console.log("Could not found the videoUrl to play, element.querySelector('#videoPlayer').videoUrl")
+    }
+    console.log("videoUrl is ", url);
 
-    initApp()
-}
-
-var manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
-
-// var manifestUri =
-//     "https://stream.314ecorp.com/314elearning/in/314e_sourcing_training/95.filetype_(4-47)-2/95.filetype_(4-47)-2.mpd";
-
-function initApp() {
-    console.log("from initApp.....")
     // Install built-in polyfills to patch browser incompatibilities.
     shaka.polyfill.installAll();
 
@@ -40,9 +28,7 @@ function initApp() {
         // This browser does not have the minimum set of APIs we need.
         console.error('Browser not supported!');
     }
-}
 
-function initPlayer() {
     // Create a Player instance.
     var video = document.getElementById('video');
     var player = new shaka.Player(video);
@@ -52,6 +38,11 @@ function initPlayer() {
 
     // Listen for error events.
     player.addEventListener('error', onErrorEvent);
+
+    var manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+
+    // var manifestUri =
+    //     "https://stream.314ecorp.com/314elearning/in/314e_sourcing_training/95.filetype_(4-47)-2/95.filetype_(4-47)-2.mpd";
 
     // Try to load a manifest.
     // This is an asynchronous process.
