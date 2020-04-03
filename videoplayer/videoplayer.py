@@ -102,9 +102,11 @@ class videoPlayerXBlock(XBlock):
 
         frag = Fragment(html)
         frag.add_css(self.load_resource("static/css/videoplayer.css"))
+        frag.add_css(self.load_resource(
+            "static/css/shaka-player-controls.min.css"))
 
-        # frag.add_javascript(self.load_resource(
-        #     "static/js/shaka-player.compiled.debug.js"))
+        frag.add_javascript(self.load_resource(
+            "static/js/shaka-player.compiled.min.js"))
         frag.add_javascript(self.load_resource(
             "static/js/videoplayer_view.js"))
         frag.initialize_js('videoPlayerXBlockInitView')
