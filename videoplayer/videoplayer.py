@@ -6,6 +6,7 @@ from django.template import Context, Template
 from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
+import uuid
 
 
 class videoPlayerXBlock(XBlock):
@@ -94,7 +95,8 @@ class videoPlayerXBlock(XBlock):
             'url': fullUrl,
             'allow_download': self.allow_download,
             'source_text': self.source_text,
-            'source_url': self.source_url
+            'source_url': self.source_url,
+            'video_element_id': uuid.uuid4()
         }
 
         html = self.render_template(
@@ -103,8 +105,11 @@ class videoPlayerXBlock(XBlock):
         frag = Fragment(html)
         frag.add_css(self.load_resource("static/css/videoplayer.css"))
 
-        frag.add_javascript(self.load_resource(
-            "static/js/shaka-player.compiled.debug.min.js"))
+        # frag.add_javascript(self.load_resource(
+        #     "static/js/shaka-player.compiled.debug.min.js"))
+
+        frag.add_javascript_url(
+            "https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.5.10/shaka-player.compiled.debug.js")
         frag.add_javascript(self.load_resource(
             "static/js/videoplayer_view.js"))
         frag.initialize_js('videoPlayerXBlockInitView')

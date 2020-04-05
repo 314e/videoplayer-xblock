@@ -4,53 +4,47 @@ function videoPlayerXBlockInitView(runtime, element) {
      * In the LMS, element is the DOM container.
      * In the CMS, element is the jQuery object associated*
      * So here I make sure element is the jQuery object */
-    if(element.innerHTML) element = $(element);
+    // if(element.innerHTML) element = $(element);
 
-    var video = element.find('video:first');
-    console.log("video element is ", video)
-    console.log("runtime is ", runtime)
     // videojs(video.get(0), {playbackRates:[0.75,1,1.25,1.5,1.75,2]}, function() {});
     // debugger;
-    var videolink = document.querySelector("#video").getAttribute("data-videolink");
-    if (!videolink) {
-        console.log("Could not found the videoUrl to play, element.querySelector('#videoPlayer').videoUrl")
-    }
-    console.log("videoUrl is ", videolink);
-
-    initApp(videolink)
+    initApp();
 }
 
-function initApp(videolink) {
+function initApp() {
     // Install built-in polyfills to patch browser incompatibilities.
     shaka.polyfill.installAll();
 
     // Check to see if the browser supports the basic APIs Shaka needs.
     if (shaka.Player.isBrowserSupported()) {
         // Everything looks good!
-        initPlayer(videolink);
+        initPlayer();
     } else {
         // This browser does not have the minimum set of APIs we need.
         console.error('Browser not supported!');
     }
 }
 
-function initPlayer(videolink ="https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd") {
+function initPlayer() {
     // Create a Player instance.
     var video = document.getElementById('video');
-    var player = new shaka.Player(video);
+    document.querySelectorAll("#video").forEach((video) => {
+        let videoLink = video.getAttribute("data-videolink");
+        let player = new shaka.Player(video);
 
-    // Attach player to the window to make it easy to access in the JS console.
-    window.player = player;
+        // // Attach player to the window to make it easy to access in the JS console.
+        // window.player = player;
 
-    // Listen for error events.
-    player.addEventListener('error', onErrorEvent);
+        // Listen for error events.
+        player.addEventListener('error', onErrorEvent);
 
-    // Try to load a manifest.
-    // This is an asynchronous process.
-    player.load(videolink).then(function () {
-        // This runs if the asynchronous load is successful.
-        console.log('The video has now been loaded!');
-    }).catch(onError);  // onError is executed if the asynchronous load fails.
+        // Try to load a manifest.
+        // This is an asynchronous process.
+        player.load(videoLink).then(function () {
+            // This runs if the asynchronous load is successful.
+            console.log('The video has now been loaded!');
+        }).catch(onError);  // onError is executed if the asynchronous load fails.
+    });
 }
 
 function onErrorEvent(event) {
