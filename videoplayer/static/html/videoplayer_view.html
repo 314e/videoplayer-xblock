@@ -5,11 +5,15 @@
         }
     </style>
     <h2>{{ display_name }}</h2>
-    <video data-dashjs-player src="{{ url }}" controls disablePictureInPicture controlsList="nodownload" width="100%" height="100%"
-        html5_sources="[&quot;{{ url }}&quot;]">
-        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-    </video>
+
+    <video
+        id="video"
+        width="100%"
+        height="100%"
+        controls
+        data-videolink="{{url}}"
+    ></video>
+
     {% if allow_download or source_url != "" %}
     <ul>
         {% if allow_download %}
@@ -26,4 +30,3 @@
     </ul>
     {% endif %}
 </div>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>

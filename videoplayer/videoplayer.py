@@ -94,7 +94,7 @@ class videoPlayerXBlock(XBlock):
             'url': fullUrl,
             'allow_download': self.allow_download,
             'source_text': self.source_text,
-            'source_url': self.source_url
+            'source_url': self.source_url,
         }
 
         html = self.render_template(
@@ -103,11 +103,8 @@ class videoPlayerXBlock(XBlock):
         frag = Fragment(html)
         frag.add_css(self.load_resource("static/css/videoplayer.css"))
 
-        '''
-        No need to load dash.all.min.js as I have already added it from cdn in videoplayer_view.html
-        frag.add_javascript(self.load_resource("static/js/dash.all.debug.js"))
-        <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-        '''
+        frag.add_javascript_url(
+            "https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.5.10/shaka-player.compiled.debug.js")
         frag.add_javascript(self.load_resource(
             "static/js/videoplayer_view.js"))
         frag.initialize_js('videoPlayerXBlockInitView')
